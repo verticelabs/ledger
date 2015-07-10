@@ -1,3 +1,13 @@
+# Eclipse
+.classpath
+.metadata/
+.project
+.settings/
+
+# Mac
+.DS_Store
+
+# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
