@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="465" y="172" name="account_balances">
+</datatypes><table x="450" y="223" name="account_balances">
 <row name="account_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -54,7 +54,7 @@
 <table x="255" y="172" name="ledger_logs">
 <row name="account_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="account_balances" row="account_id" />
+<default>NULL</default><relation table="accounts" row="id" />
 </row>
 <row name="date_ref" null="0" autoincrement="0">
 <datatype>DATETIME</datatype>
@@ -62,9 +62,19 @@
 <row name="entry_type" null="0" autoincrement="0">
 <datatype>CHAR(1)</datatype>
 <default>'NULL'</default></row>
+<row name="tchannel_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="transaction_channels" row="id" />
+</row>
+<row name="transaction_ref" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+<default>'NULL'</default></row>
 <row name="amount" null="0" autoincrement="0">
 <datatype>DECIMAL</datatype>
 <default>NULL</default></row>
+<row name="archived" null="0" autoincrement="0">
+<datatype>bit</datatype>
+<default>0</default></row>
 <row name="created_at" null="0" autoincrement="0">
 <datatype>DATETIME</datatype>
 <default>'NULL'</default></row>
@@ -77,6 +87,17 @@
 <row name="currency_code" null="0" autoincrement="0">
 <datatype>CHAR(3)</datatype>
 <default>'840'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="255" y="22" name="transaction_channels">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="identifier" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>'NULL'</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
