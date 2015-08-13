@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="450" y="223" name="account_balances">
+</datatypes><table x="101" y="359" name="account_balances">
 <row name="account_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -51,7 +51,7 @@
 <part>account_id</part>
 </key>
 </table>
-<table x="255" y="172" name="ledger_logs">
+<table x="101" y="151" name="ledger_logs">
 <row name="account_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="accounts" row="id" />
@@ -79,10 +79,22 @@
 <datatype>DATETIME</datatype>
 <default>'NULL'</default></row>
 </table>
-<table x="722" y="172" name="accounts">
+<table x="332" y="151" name="accounts">
 <row name="id" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="account_balances" row="account_id" />
+</row>
+<row name="profile_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="account_profiles" row="id" />
+</row>
+<row name="issuer_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="issuers" row="id" />
+</row>
+<row name="channel_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="account_channels" row="id" />
 </row>
 <row name="currency_code" null="0" autoincrement="0">
 <datatype>CHAR(3)</datatype>
@@ -91,15 +103,91 @@
 <part>id</part>
 </key>
 </table>
-<table x="255" y="22" name="transaction_channels">
+<table x="101" y="52" name="transaction_channels">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="identifier" null="0" autoincrement="0">
 <datatype>VARCHAR(20)</datatype>
 <default>'NULL'</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+<default>'NULL'</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
+</key>
+</table>
+<table x="670" y="360" name="account_channels">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="identifier" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>'NULL'</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="676" y="195" name="issuers">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="identifier" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>'NULL'</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+<default>'NULL'</default></row>
+<row name="currency_code" null="0" autoincrement="0">
+<datatype>CHAR(3)</datatype>
+<default>'840'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="680" y="51" name="account_profiles">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="issuer_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="issuers" row="id" />
+</row>
+<row name="identifier" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>'NULL'</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="336" y="51" name="profile_allowed_transactions">
+<row name="profile_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="account_profiles" row="id" />
+</row>
+<row name="tchannel_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="transaction_channels" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="313" y="338" name="issuer_allowed_channels">
+<row name="issuer_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="issuers" row="id" />
+</row>
+<row name="channel_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="account_channels" row="id" />
+</row>
+<key type="PRIMARY" name="">
 </key>
 </table>
 </sql>
