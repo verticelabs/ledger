@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import verticelabs.ledger.repository.AccountRepository;
-import verticelabs.ledger.test.AbstractTestSuite;
+import verticelabs.test.ledger.AbstractTestSuite;
 
 public class AccountTest extends AbstractTestSuite {
 
@@ -17,6 +17,5 @@ public class AccountTest extends AbstractTestSuite {
 	public void testJpaMapping() {
 		assertNotNull(accountRepository);
 		assertEquals(0, accountRepository.count());
-		assertNull(accountRepository.findOne(1L));
 	}
 }
