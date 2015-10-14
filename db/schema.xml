@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="101" y="359" name="account_balances">
+</datatypes><table x="102" y="402" name="account_balances">
 <row name="account_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -79,7 +79,7 @@
 <datatype>DATETIME</datatype>
 <default>'NULL'</default></row>
 </table>
-<table x="332" y="151" name="accounts">
+<table x="351" y="151" name="accounts">
 <row name="id" null="0" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="account_balances" row="account_id" />
@@ -178,7 +178,7 @@
 <key type="PRIMARY" name="">
 </key>
 </table>
-<table x="313" y="338" name="issuer_allowed_channels">
+<table x="318" y="337" name="issuer_allowed_channels">
 <row name="issuer_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="issuers" row="id" />
