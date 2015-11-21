@@ -85,7 +85,7 @@ AS
       SET @amount = @rest
       IF @is_charge > 0 AND @tdate_ref < GETDATE()
         BEGIN
-          SET @balance = ledger.get_account_balance_fn(@account_id)
+          SET @balance = ledger.get_account_balance(@account_id)
           IF @balance <= @zeromoney
               RETURN 15 -- Unprocessable amount (exceeded)
           IF @amount > @balance

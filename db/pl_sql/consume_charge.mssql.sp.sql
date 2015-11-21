@@ -55,7 +55,7 @@ AS
   IF @date_ref > @Now AND @allow_provision_debit=0
       SET @date_ref = @Now
 
-  SET @balance = ledger.get_account_balance_fn(@account_id)
+  SET @balance = ledger.get_account_balance(@account_id)
   IF @balance < @amount
       RETURN 15 -- Insufficient funds
 

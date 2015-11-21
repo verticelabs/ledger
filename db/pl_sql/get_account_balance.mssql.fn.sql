@@ -2,7 +2,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE FUNCTION [ledger].[get_account_balance_fn](@account_id bigint)
+CREATE FUNCTION [ledger].[get_account_balance](@account_id bigint)
 RETURNS money
 AS
 BEGIN
