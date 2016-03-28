@@ -79,6 +79,19 @@ AS
   IF @is_charge > 0 AND @is_debit > 0
       RETURN 21 -- Invalid transaction_ref (charge and debit with same ref)
 
+  IF @tdate_ref > @Now AND @is_charge > 1
+      SELECT TOP 1 @tdate_ref = ll.date_ref,
+             @tamount = SUM(CASE ll.entry_type WHEN 'C' THEN ll.amount ELSE @zeromoney END),
+             @ramount = SUM(CASE ll.entry_type WHEN 'R' THEN ll.amount ELSE @zeromoney END)
+      FROM [ledger].[ledger_logs] ll (NOLOCK)
+      WHERE ll.account_id=@account_id
+        AND ll.tchannel_id=@tchannel_id
+        AND ll.transaction_ref=@transaction_ref
+        AND ll.date_ref > @Now
+      GROUP BY ll.date_ref
+      HAVING SUM(ll.amount) != @zeromoney
+      ORDER BY ll.date_ref DESC
+
   SET @rest = ABS(@tamount + @ramount)
   IF @amount IS NULL
     BEGIN
