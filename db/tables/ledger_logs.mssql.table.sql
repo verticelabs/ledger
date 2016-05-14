@@ -11,6 +11,7 @@ CREATE TABLE [ledger].[ledger_logs](
   [tchannel_id] int NOT NULL,
   [transaction_ref] varchar(32) NOT NULL,
   [amount] money NOT NULL,
+  [summary] varchar(100) NULL,
   [archived] bit NOT NULL DEFAULT 0,
   [created_at] datetime NOT NULL
 ) ON [PRIMARY] ([archived]) -- YOU MAY SET ANOTHER PARTITION SCHEME
