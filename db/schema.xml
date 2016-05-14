@@ -72,6 +72,9 @@
 <row name="amount" null="0" autoincrement="0">
 <datatype>DECIMAL</datatype>
 <default>NULL</default></row>
+<row name="summary" null="1" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+<default>NULL</default></row>
 <row name="archived" null="0" autoincrement="0">
 <datatype>bit</datatype>
 <default>0</default></row>
